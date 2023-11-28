@@ -1,10 +1,12 @@
 {
   "name": "finance",
+  "type": "module",
   "version": "1.0.0",
   "description": "Sistema de gerencia financeira ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/leonardoresendedelgado/Finacne-bkac/issues"
   },
-  "homepage": "https://github.com/leonardoresendedelgado/Finacne-bkac#readme"
+  "homepage": "https://github.com/leonardoresendedelgado/Finacne-bkac#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
 }
