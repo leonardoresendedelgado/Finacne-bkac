@@ -1,9 +1,11 @@
 import bodyParser from 'body-parser';
+import Unidades from './Unidades.js';
 
-const Router = (App) => {
+const router = (App)=>{
     App.use(
-        bodyParser.json()
+        bodyParser.json(),
+        Unidades
     )
 }
 
-export default Router;
+export default router;

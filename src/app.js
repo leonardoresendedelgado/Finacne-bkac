@@ -1,8 +1,12 @@
 import Express from 'express';
-import Router from './Router.js';
-
-Router(App);
+import conectDataBase from './config/dbConnect.js';
 const App = Express();
+conectDataBase()
+
+
+
+import router from './Router/index.js';
+router(App)
 
 
 export default App;
