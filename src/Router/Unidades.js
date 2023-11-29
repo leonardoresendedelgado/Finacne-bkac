@@ -5,7 +5,7 @@ const Unidades = express.Router()
 
 
 Unidades
-    .post("/", ControllerUnidades.insertUnit)
+    .post("/newUnidade", ControllerUnidades.insertUnit)
     .get("/", ControllerUnidades.getUnit)
     .put("/", ControllerUnidades.putUnit)
     .delete("/", ControllerUnidades.deleteUnit)
