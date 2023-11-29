@@ -5,6 +5,6 @@ const Viagens = express.Router()
 
 
 Viagens
-    .get("/getViagem", ControllerViagem.insertViagem)
+    .post("/getViagem", ControllerViagem.insertViagem)
 
 export default Viagens;

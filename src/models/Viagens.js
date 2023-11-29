@@ -1,14 +1,16 @@
 import mongoose  from 'mongoose';
 import { unidadeSchema } from './Unidades.js';
+import { BilhetesSchema } from './BilheteOutros.js';
 
 const viagensSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId },
-    data: {type: Date, required: true },
+    data: {type: String, required: true },
     unidade: unidadeSchema,
-    tipoDeTransporte: { type: String, required: true},
+    numeroDaConducao:  { type: String, required: true},
+    tipoDeConducao: { type: String, required: true},
     valor: { type: Number, required: true },
     percurso: { type: String, required: true },
-    cartao: { type: Number, required: true }
+    cartao: BilhetesSchema
 },{versionKey: false});
 
 const viagem = mongoose.model("viagens", viagensSchema);
