@@ -1,13 +1,16 @@
-import { unidade } from "../models/Unidades.js"
+import ServicesUnidades from "../services/serviceunidades.js";
+const servicesUnidades = new ServicesUnidades
 
 class Unidades {
     static insertUnit = async(req, res)=>{
+        const { unidade, endereco, marca } = req.body;
         try {
-            const newUnidade = req.body;
-            const createUnidade = await unidade.create(newUnidade);
-            res.status(201).send(createUnidade)
-        } catch (erro) {
-            res.status(500).json({ message: `${erro.message} - falha ao cadastrar unidade`});
+            const unidadeCriada = await servicesUnidades.InsertUnit(
+                {unidade, endereco, marca}
+            );
+            res.status(201).send({message: `Unidade cliada com sucesso`,unidadeCriada})
+        } catch (error) {
+            res.status(500).json({ message: `${error.message} - falha ao cadastrar unidade`});
         }
     }
     static getUnit = async(req, res)=>{
