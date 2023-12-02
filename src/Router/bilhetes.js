@@ -7,5 +7,7 @@ const bilhete = express.Router()
 bilhete
     .get("/bilhetes", ControllerBilhetes.getBilhete)
     .post("/bilhetes", ControllerBilhetes.insertBilhete)
+    .put("/bilhetes/:id", ControllerBilhetes.putBilhete)
+    .delete("/bilhetes/:id", ControllerBilhetes.deleteBilhete)
 
 export default bilhete;

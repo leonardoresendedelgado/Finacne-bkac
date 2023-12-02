@@ -6,8 +6,8 @@ const Unidades = express.Router()
 
 Unidades
     .post("/newUnidade", ControllerUnidades.insertUnit)
-    .get("/", ControllerUnidades.getUnit)
-    .put("/", ControllerUnidades.putUnit)
-    .delete("/", ControllerUnidades.deleteUnit)
+    .delete("/delUnidade/:id", ControllerUnidades.deleteUnit)
+    .get("/unidades", ControllerUnidades.getUnit)
+    .put("/upUnite/:id", ControllerUnidades.putUnit)
 
 export default Unidades;
