@@ -8,12 +8,26 @@ class ServicesBilhestes {
                 const newBilhete = {
                     Bilhete: dto.Bilhete,
                     apelido: dto.apelido,
-                    ativo: dto.ativo 
+                    valor: dto.valor,
+                    ativo: dto.ativo
                 }
                 const bilheteCadastrado = await bilhete.create(newBilhete)
                 return bilheteCadastrado
             }else{
                 throw new Error("Bilhete já cadastrada")
+            }
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+    async getBilhetes(){
+        try {
+            const bilhetes = await bilhete.find()
+            if(bilhetes.length === 0){
+                const vazio = "Não existe bilhetes cadastradas"
+                return vazio
+            }else{
+                return bilhetes;
             }
         } catch (error) {
             throw new Error(error)

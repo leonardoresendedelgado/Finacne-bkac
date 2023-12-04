@@ -5,7 +5,7 @@ const validation = new ServicesValidation
 
 class Unidades {
     static insertUnit = async(req, res)=>{
-        const { unidade, endereco, marca } = req.body;
+        const { unidade, endereco, marca} = req.body;
         try {
             const servicesValidation = await validation.ValidationUnidades(
                 {unidade, endereco, marca}

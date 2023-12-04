@@ -19,9 +19,13 @@ class ServicesValidation {
             ) {
             throw new Error("Apelido não pode ser vazio")
         } else
-        if (dto.ativo === undefined || dto.ativo) {
+        if (dto.ativo === undefined || dto.ativo === null) {
             throw new Error("Estatus não pode ser vazio")
         }
+        if (dto.valor === undefined || !dto.valor) {
+            throw new Error("Valor não pode ser vazio")
+        }
+
     }
 }
 export default ServicesValidation;
