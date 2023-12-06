@@ -25,7 +25,30 @@ class ServicesValidation {
         if (dto.valor === undefined || !dto.valor) {
             throw new Error("Valor não pode ser vazio")
         }
-
+    }
+    async ValidationViagens(dto){
+        if (dto.data === undefined || !dto.data ) {
+            throw new Error("Data não pode ser vazio")
+        } else
+        if ( dto.unidade === undefined || !dto.unidade
+            ) {
+            throw new Error("Unidade não pode ser vazio")
+        } else
+        if (dto.numeroDaConducao === undefined || dto.nemeroDaConducao === null) {
+            throw new Error("Numero da condução não pode ser vazio")
+        }
+        if (dto.tipoDeConducao === undefined || !dto.tipoDeConducao) {
+            throw new Error("Tipo de condução não pode ser vazio")
+        }
+        if (dto.valor === undefined || !dto.valor) {
+            throw new Error("Valor da condução não pode ser vazio")
+        }
+        if (dto.percurso === undefined || !dto.percurso) {
+            throw new Error("Percurso não pode ser vazio")
+        }
+        if (dto.cartao === undefined || !dto.cartao) {
+            throw new Error("Cartão não pode ser vazio")
+        }
     }
 }
 export default ServicesValidation;

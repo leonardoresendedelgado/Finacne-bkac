@@ -33,5 +33,42 @@ class ServicesBilhestes {
             throw new Error(error)
         }
     }
+    async upBilhetes(dto){
+        console.log(dto)
+        try {
+            const bilheteExistente = await bilhete.findById(dto.id)
+            if(bilheteExistente !== null){
+                const newBilhete = {
+                    Bilhete: dto.Bilhete,
+                    apelido: dto.apelido,
+                    valor: dto.valor,
+                    ativo: dto.ativo
+                }
+                const bilheteCadastrado = await bilhete.findByIdAndUpdate(dto.id, newBilhete);
+                const update = await bilhete.findById(dto.id);
+                return update
+            }else{
+                throw new Error("Bilhete não cadastrado")
+            }
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+    async delBilhetes(dto){
+        try {
+            if(dto.id === undefined || !dto.id) {
+                throw new Error("informe um id")
+            }
+            const idExixtente = await bilhete.findById(dto.id)
+            if(idExixtente !== null){
+                const idExcludo = await bilhete.findByIdAndDelete(dto.id)
+                return idExcludo
+            }else {
+                throw new Error(`Este bilhete não existe!`)
+            }
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
 }
 export default ServicesBilhestes;

@@ -1,28 +1,37 @@
-import viagem from "../models/Viagens.js";
-import { unidade } from "../models/Unidades.js";
-import { bilhete } from "../models/BilheteOutros.js";
+import ServicesViagens from "../services/servicesViagens.js";
+import ServicesValidation from "../services/servicesValidation.js";
+const servicesViagens =  new ServicesViagens;
+const servicesValidation = new ServicesValidation;
+
 class Viagens {
     static insertViagem = async(req, res)=>{
-        const Viagem = req.body;
+        const { data, unidade, numeroDaConducao, tipoDeConducao, valor,
+        percurso, cartao } = req.body;
         try {
-            const Unidade = await unidade.findOne({unidade: new RegExp(Viagem.unidade)})
-            const Bilhete = await bilhete.findOne({apelido: new RegExp(Viagem.cartao)})
-            const newViagem = { ...Viagem, unidade: {...Unidade._doc}, cartao: {...Bilhete._doc}}
-            const ViagemCreat = await viagem.create(newViagem)
-            res.status(201).json({ message: "Viagem inserida com sucesso", viagem: ViagemCreat});
+            const validation = await servicesValidation.ValidationViagens({ 
+                data, unidade, numeroDaConducao, tipoDeConducao, valor,
+                percurso, cartao });
+            const newViagem = await servicesViagens.insertViagens({ 
+                data, unidade, numeroDaConducao, tipoDeConducao, valor,
+                percurso, cartao });
+            res.status(201).json({ message: "Viagem inserida com sucesso", viagem: newViagem});
         } catch (erro) {
             res.status(500).json({ message: `${erro.message} - falha ao inserir viagem`});
         }
     }
-    static getUnit = async(req, res)=>{
-        
+    static getViagens = async(req, res)=>{
+        try {
+            const viagens  = await servicesViagens.getViagens()
+            if(viagens.length > 0 ){
+                res.status(200).json({viagem: {...viagens}})
+            }else{
+                res.status(200).json({message: "Não existe viagens cadastradas"})
+            }
+        } catch (error) {
+            res.status(500).json({message: `Erro ao buscar viagens - ${error.message}`})
+        }
     }
-    static putUnit = async(req, res)=>{
-
-    }
-    static deleteUnit = async(req, res)=>{
-
-    }
+   
 }
 
 export default Viagens;
